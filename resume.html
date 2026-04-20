@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Resume - Ella Fraser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #a13a64;
+            --accent-light: #e8a4bc;
+            --cream: #fdf2f4;
+        }
+        body {
+            font-family: 'Muli', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding-top: 54px;
+            color: #343a40;
+            background: #fff;
+        }
+        @media (min-width: 992px) {
+            body { padding-top: 0; padding-left: 17rem; }
+        }
+
+        #sideNav {
+            background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%) !important;
+        }
+        @media (min-width: 992px) {
+            #sideNav {
+                text-align: center;
+                position: fixed;
+                top: 0; left: 0; bottom: 0;
+                width: 17rem;
+                height: 100vh;
+                flex-direction: column;
+                align-items: center;
+            }
+            #sideNav .navbar-brand {
+                display: flex;
+                margin: auto auto 0;
+                padding: 0.5rem;
+            }
+            #sideNav .navbar-collapse {
+                display: flex;
+                align-items: flex-start;
+                flex-grow: 0;
+                width: 100%;
+                margin-bottom: auto;
+            }
+            #sideNav .navbar-collapse .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+            #sideNav .navbar-collapse .navbar-nav .nav-item { display: block; }
+            #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
+                display: block;
+                color: #fff;
+            }
+        }
+        .img-profile {
+            width: 10rem;
+            height: 10rem;
+            object-fit: cover;
+            object-position: center;
+            border: 0.5rem solid rgba(255,255,255,0.35);
+        }
+
+        section.resume-section {
+            border-bottom: 1px solid #f0d5dd;
+            padding: 3rem 1.5rem !important;
+            max-width: 75rem;
+        }
+        @media (min-width: 768px) {
+            section.resume-section { padding: 5rem !important; }
+        }
+        section.resume-section .resume-section-content {
+            max-width: 60rem;
+        }
+
+        h1 {
+            font-family: 'Saira Extra Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 6rem;
+            line-height: 5.5rem;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-family: 'Saira Extra Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        h3 {
+            font-family: 'Saira Extra Condensed', sans-serif;
+            font-weight: 700;
+        }
+        .text-primary, .text-primary a {
+            color: var(--accent) !important;
+        }
+        a { color: var(--accent); }
+        a:hover { color: var(--accent-light); }
+
+        .subheading {
+            font-size: 1.2rem;
+            font-family: 'Saira Extra Condensed', sans-serif;
+            font-weight: 500;
+        }
+
+        .social-icons .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: var(--accent);
+            color: #fff !important;
+            border-radius: 100%;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+        .social-icons .social-icon:hover { background: var(--accent-light); }
+
+        .skills-list, .interests-list {
+            list-style: none;
+            padding: 0;
+            font-size: 1.1rem;
+        }
+        .skills-list li, .interests-list li {
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #f0d5dd;
+        }
+
+        .awards-list { list-style: none; padding-left: 0; }
+        .awards-list li { padding: 0.4rem 0; font-size: 1.1rem; }
+        .awards-list i { color: #e0a800; margin-right: 0.5rem; }
+    </style>
+</head>
+<body id="page-top">
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
+    <a class="navbar-brand" href="#page-top">
+        <span class="d-block d-lg-none">Ella Fraser</span>
+        <span class="d-none d-lg-block">
+            <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+                 src="IMG_6215.jpeg" alt="Ella Fraser">
+        </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+            <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+            <li class="nav-item"><a class="nav-link" href="#volunteer">Volunteer</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills">Skills &amp; Interests</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid p-0">
+
+    <section class="resume-section" id="about">
+        <div class="resume-section-content">
+            <h1 class="mb-0">Ella <span class="text-primary">Fraser</span></h1>
+            <div class="subheading mb-4">
+                Redwood City, CA ·
+                <a href="mailto:ellafraser2003@gmail.com">ellafraser2003@gmail.com</a>
+                · (650) 600-2843
+            </div>
+            <p class="lead mb-4">
+                Business student at BYU with a passion for marketing, community service,
+                and kids (and dogs). Fluent in Spanish, happiest on a trail run.
+            </p>
+            <div class="social-icons">
+                <a class="social-icon" href="https://www.linkedin.com/in/ella-fraser/" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section" id="education">
+        <div class="resume-section-content">
+            <h2 class="mb-5">Education</h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Brigham Young University</h3>
+                    <div class="subheading mb-3">Bachelor of Science/Arts: Business &middot; Provo, UT</div>
+                    <ul>
+                        <li>GPA 3.93</li>
+                        <li>Merlin W. and Edna W. Sant Scholarship</li>
+                        <li>Brigham Young University Academic Scholarship</li>
+                        <li>Marriott Inclusion in Business Society Member</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">Apr 2027</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section" id="experience">
+        <div class="resume-section-content">
+            <h2 class="mb-5">Experience</h2>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Private Employers</h3>
+                    <div class="subheading mb-3">Babysitter &amp; Dog Walker &middot; Redwood City, CA</div>
+                    <ul>
+                        <li>Cared for children ages 3–6, entrusted with transportation, housekeeping, food prep, and healthy nighttime routines.</li>
+                        <li>Walked and ran neighborhood dogs daily, aided in obedience training, and cared for dogs multi-day while owners were away.</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">Jul 2025 – Aug 2025</span></div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Canada Community College</h3>
+                    <div class="subheading mb-3">Swim Teacher / Coach &middot; Redwood City, CA</div>
+                    <ul>
+                        <li>Provided swim safety training and classes to 20 children ages 0–8.</li>
+                        <li>Coached 10 children ages 9–12 on technique and strokes, preparing them for middle/high school swim teams.</li>
+                        <li>Led private coaching lessons for 5 children ages 11–13.</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">May 2023 – Aug 2023</span></div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Nillie's Marketing Internship <em>(Retail Store)</em></h3>
+                    <div class="subheading mb-3">Intern &middot; Provo, UT</div>
+                    <ul>
+                        <li>Ran social media marketing, opened wholesale brand accounts, and shaped the store's aesthetic and theme.</li>
+                        <li>Scouted potential locations throughout Utah County and built marketing strategies for the store opening.</li>
+                        <li>Completed 7.5+ hours of work each week.</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">Jan 2023 – May 2023</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section" id="volunteer">
+        <div class="resume-section-content">
+            <h2 class="mb-5">Volunteer Experience</h2>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Church of Jesus Christ of Latter-day Saints</h3>
+                    <div class="subheading mb-3">Missionary &middot; Houston, TX</div>
+                    <ul>
+                        <li>Followed a regimented 6:30am–9pm daily schedule, spending 8 hours a day contacting people and teaching Spanish speakers.</li>
+                        <li>Volunteered 6 hours weekly at Katy Christian Ministries Food Bank for 6 months, organizing food and translating for Spanish-speaking residents.</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">Feb 2024 – Jul 2025</span></div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Redwood City Public Library</h3>
+                    <div class="subheading mb-3">Volunteer &middot; Redwood City, CA</div>
+                    <ul>
+                        <li>Ran and advertised monthly book drives to help the library stay afloat through the COVID pandemic.</li>
+                        <li>Organized book donations weekly for subsequent sale on the library website.</li>
+                    </ul>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">Aug 2020 – Jul 2021</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section" id="skills">
+        <div class="resume-section-content">
+            <h2 class="mb-5">Awards, Skills &amp; Interests</h2>
+            <ul class="awards-list">
+                <li><i class="fas fa-trophy"></i> Advanced proficiency in Spanish</li>
+                <li><i class="fas fa-trophy"></i> High School Valedictorian</li>
+                <li><i class="fas fa-trophy"></i> 4-Year Varsity Soccer and Track &middot; 2× All-League Soccer Player</li>
+                <li><i class="fas fa-trophy"></i> Social media and editing skills</li>
+                <li><i class="fas fa-trophy"></i> Loves to run, hike, and read historical fiction</li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
