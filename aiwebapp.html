@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Name Generator</title>
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #fdf2f4 0%, #f5d5dd 100%);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', Geneva, Verdana, sans-serif;
+        color: #7a2a4a;
+        display: flex;
+        flex-direction: column;
+    }
+    nav {
+        background: linear-gradient(90deg, #7a2a4a, #e8a4bc);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #7a2a4a;
+    }
+    nav .logo {
+        color: antiquewhite; font-weight: bold; font-size: 20px; padding-left: 15px;
+    }
+    nav ul { list-style: none; display: flex; gap: 10px; margin: 0; padding: 15px; }
+    nav a {
+        color: antiquewhite; text-decoration: none; font-weight: bold;
+        padding: 10px 15px; border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    nav a:hover { background-color: #a13a64; transform: scale(1.1); }
+
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+    }
+    h1 {
+        font-size: 42pt;
+        margin: 10px 0 0 0;
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+        color: #7a2a4a;
+    }
+    .tagline {
+        font-size: 14pt;
+        opacity: 0.75;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .filter-group {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .filter-label {
+        display: block;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        opacity: 0.7;
+    }
+    .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+    .chip {
+        background: transparent;
+        border: 2px solid #7a2a4a;
+        color: #7a2a4a;
+        padding: 8px 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.2s;
+        user-select: none;
+    }
+    .chip.active {
+        background: #7a2a4a;
+        color: #fdf2f4;
+    }
+    .chip:hover { transform: translateY(-2px); }
+
+    .card {
+        background: rgba(255, 255, 255, 0.55);
+        border: 2px solid #7a2a4a;
+        border-radius: 14px;
+        padding: 50px 40px;
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(61, 40, 23, 0.25);
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: opacity 0.25s;
+        margin-top: 20px;
+    }
+    .card.fading { opacity: 0; }
+    .name {
+        font-size: 48pt;
+        font-family: 'Gill Sans', sans-serif;
+        margin: 0 0 10px 0;
+        color: #7a2a4a;
+        letter-spacing: 1px;
+    }
+    .origin {
+        font-size: 13pt;
+        font-style: italic;
+        opacity: 0.75;
+    }
+    .meta {
+        font-size: 10pt;
+        opacity: 0.65;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 15px;
+    }
+
+    .actions {
+        margin-top: 25px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    button {
+        background: #7a2a4a;
+        color: #fdf2f4;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s;
+        font-family: inherit;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(61, 40, 23, 0.4); }
+    button.secondary {
+        background: transparent;
+        color: #7a2a4a;
+        border: 2px solid #7a2a4a;
+    }
+
+    .saved {
+        margin-top: 40px;
+        width: 100%;
+        max-width: 600px;
+    }
+    .saved h3 { font-family: 'Gill Sans', sans-serif; font-size: 20pt; margin-bottom: 10px; color: #7a2a4a; }
+    .saved ul { list-style: none; padding: 0; }
+    .saved li {
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid #7a2a4a;
+        padding: 12px 18px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15pt;
+    }
+    .saved li button {
+        background: transparent; color: #7a2a4a;
+        border: 1px solid #7a2a4a; padding: 5px 12px; font-size: 12px;
+    }
+    .saved-name { font-weight: bold; }
+    .saved-meta { font-size: 11pt; opacity: 0.7; margin-left: 10px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Navigation</div>
+    <ul>
+        <li><a href="scratch.html">Scratch Page</a></li>
+        <li><a href="index.html">Resume</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h1>Dog Name Generator</h1>
+    <div class="tagline">Built in collaboration with AI by Ella Fraser. Pick a vibe, hit generate.</div>
+
+    <div class="filter-group">
+        <span class="filter-label">Size</span>
+        <div class="chips" data-group="size">
+            <div class="chip active" data-value="any">Any</div>
+            <div class="chip" data-value="small">Small</div>
+            <div class="chip" data-value="medium">Medium</div>
+            <div class="chip" data-value="large">Large</div>
+        </div>
+    </div>
+
+    <div class="filter-group">
+        <span class="filter-label">Vibe</span>
+        <div class="chips" data-group="vibe">
+            <div class="chip active" data-value="any">Any</div>
+            <div class="chip" data-value="playful">Playful</div>
+            <div class="chip" data-value="chill">Chill</div>
+            <div class="chip" data-value="regal">Regal</div>
+            <div class="chip" data-value="goofy">Goofy</div>
+        </div>
+    </div>
+
+    <div class="card" id="card">
+        <div class="name" id="name">Meet your next dog.</div>
+        <div class="origin" id="origin">Pick filters above, then hit generate.</div>
+        <div class="meta" id="meta"></div>
+    </div>
+
+    <div class="actions">
+        <button onclick="generate()">Generate</button>
+        <button class="secondary" onclick="saveIdea()">Save this name</button>
+    </div>
+
+    <div class="saved" id="savedWrap" style="display:none;">
+        <h3>Your saved names</h3>
+        <ul id="savedList"></ul>
+    </div>
+</main>
+
+<script>
+    const names = [
+        { name: "Biscuit",  origin: "A good, edible-sounding classic.",     sizes: ["small","medium"], vibes: ["playful","goofy"] },
+        { name: "Waffle",   origin: "Breakfast energy. Pure serotonin.",     sizes: ["small","medium"], vibes: ["goofy","playful"] },
+        { name: "Atlas",    origin: "Titan who held up the sky.",            sizes: ["large"],           vibes: ["regal"] },
+        { name: "Koda",     origin: "'Little bear' in several Native languages.", sizes: ["medium","large"], vibes: ["chill","playful"] },
+        { name: "Moose",    origin: "Only acceptable for dogs over 60 lbs.", sizes: ["large"],           vibes: ["chill","goofy"] },
+        { name: "Nori",     origin: "Like the seaweed. Sounds delicate.",    sizes: ["small"],           vibes: ["chill"] },
+        { name: "Bowie",    origin: "After the singer. Works for mismatched eyes.", sizes: ["medium"],    vibes: ["regal","playful"] },
+        { name: "Mochi",    origin: "Japanese rice cake. Soft and squishy.", sizes: ["small"],           vibes: ["chill","goofy"] },
+        { name: "Hazel",    origin: "Nut-brown and warm.",                   sizes: ["medium"],           vibes: ["chill"] },
+        { name: "Ziggy",    origin: "High energy. Zigzags everywhere.",      sizes: ["small","medium"],   vibes: ["playful","goofy"] },
+        { name: "Juno",     origin: "Roman queen of the gods.",              sizes: ["medium","large"],   vibes: ["regal"] },
+        { name: "Remy",     origin: "French, elegant, a little chef-like.",  sizes: ["small","medium"],   vibes: ["chill","regal"] },
+        { name: "Goose",    origin: "Maverick's wingman. Always loyal.",     sizes: ["medium","large"],   vibes: ["playful","goofy"] },
+        { name: "Luna",     origin: "Moon. Forever in the top 10 girl-dog names.", sizes: ["small","medium","large"], vibes: ["chill","regal"] },
+        { name: "Finn",     origin: "Irish hero. Also just a great one-syllable name.", sizes: ["medium"], vibes: ["playful"] },
+        { name: "Pippa",    origin: "Short, punchy, hard to say grumpy.",    sizes: ["small"],           vibes: ["playful"] },
+        { name: "Bear",     origin: "Does what it says on the tin.",         sizes: ["large"],           vibes: ["chill","regal"] },
+        { name: "Olive",    origin: "Green, salty, wins over skeptics.",     sizes: ["small","medium"],   vibes: ["chill","goofy"] },
+        { name: "Max",      origin: "The most popular dog name of all time.", sizes: ["medium","large"],  vibes: ["playful","chill"] },
+        { name: "Dash",     origin: "Will be an accurate description.",      sizes: ["small","medium"],   vibes: ["playful"] },
+        { name: "Sadie",    origin: "Timeless, grown-up, gentle.",           sizes: ["medium"],           vibes: ["chill","regal"] },
+        { name: "Beans",    origin: "Inexplicably correct for 40% of dogs.", sizes: ["small"],           vibes: ["goofy"] },
+        { name: "Arlo",     origin: "Old English. 'Fortified hill.'",        sizes: ["medium","large"],   vibes: ["chill","regal"] },
+        { name: "Nala",     origin: "Lion King. Instant cool factor.",       sizes: ["medium","large"],   vibes: ["regal","playful"] },
+        { name: "Pickles",  origin: "For the dog that is, in fact, a pickle.", sizes: ["small"],         vibes: ["goofy"] },
+        { name: "Tucker",   origin: "All-American farm-dog energy.",         sizes: ["medium","large"],   vibes: ["playful","chill"] },
+        { name: "Daisy",    origin: "Sunny, simple, never not adorable.",    sizes: ["small","medium"],   vibes: ["playful","chill"] },
+        { name: "Odin",     origin: "Norse all-father. Huge dog only.",      sizes: ["large"],           vibes: ["regal"] },
+        { name: "Peach",    origin: "Sweet and a little sassy.",             sizes: ["small"],           vibes: ["playful","goofy"] },
+        { name: "Theo",     origin: "Short for Theodore. Wise and calm.",    sizes: ["medium"],           vibes: ["chill","regal"] },
+        { name: "Scout",    origin: "For the dog who explores every bush.",  sizes: ["medium","large"],   vibes: ["playful"] },
+        { name: "Gus",      origin: "Classic grandpa energy in puppy form.", sizes: ["medium"],           vibes: ["chill","goofy"] },
+        { name: "Willow",   origin: "The tree. Graceful and bendy.",         sizes: ["medium"],           vibes: ["chill","regal"] },
+        { name: "Bruno",    origin: "We don't talk about Bruno. But the dog is great.", sizes: ["large"], vibes: ["chill","regal"] },
+        { name: "Pepper",   origin: "Black-and-white coat? Sold.",           sizes: ["small","medium"],   vibes: ["playful"] },
+        { name: "Rocco",    origin: "Tough-sounding. Secretly a softie.",    sizes: ["medium","large"],   vibes: ["chill","regal"] },
+        { name: "Cooper",   origin: "Top-10 American dog name for a decade.", sizes: ["medium","large"],  vibes: ["playful","chill"] },
+        { name: "Biscoff",  origin: "The cookie. Extremely 2020s.",          sizes: ["small"],           vibes: ["goofy"] },
+        { name: "Zeus",     origin: "King of the gods. Must be earned.",     sizes: ["large"],           vibes: ["regal"] },
+        { name: "Honey",    origin: "Golden dog? Name already picked.",      sizes: ["small","medium"],   vibes: ["chill","playful"] }
+    ];
+
+    const selected = { size: "any", vibe: "any" };
+    let currentIdea = null;
+    let saved = JSON.parse(localStorage.getItem("savedDogNames") || "[]");
+
+    document.querySelectorAll(".chips").forEach(group => {
+        group.querySelectorAll(".chip").forEach(chip => {
+            chip.addEventListener("click", () => {
+                group.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+                chip.classList.add("active");
+                selected[group.dataset.group] = chip.dataset.value;
+            });
+        });
+    });
+
+    function generate() {
+        const pool = names.filter(n => {
+            const sizeOk = selected.size === "any" || n.sizes.includes(selected.size);
+            const vibeOk = selected.vibe === "any" || n.vibes.includes(selected.vibe);
+            return sizeOk && vibeOk;
+        });
+        if (pool.length === 0) {
+            document.getElementById("name").textContent = "No matches";
+            document.getElementById("origin").textContent = "Try loosening the filters.";
+            document.getElementById("meta").textContent = "";
+            currentIdea = null;
+            return;
+        }
+
+        let pick;
+        do {
+            pick = pool[Math.floor(Math.random() * pool.length)];
+        } while (pool.length > 1 && currentIdea && pick.name === currentIdea.name);
+        currentIdea = pick;
+
+        const card = document.getElementById("card");
+        card.classList.add("fading");
+        setTimeout(() => {
+            document.getElementById("name").textContent = pick.name;
+            document.getElementById("origin").textContent = pick.origin;
+            document.getElementById("meta").textContent = pick.sizes.join(" / ") + "  ·  " + pick.vibes.join(" / ");
+            card.classList.remove("fading");
+        }, 200);
+    }
+
+    function saveIdea() {
+        if (!currentIdea) return;
+        if (saved.find(s => s.name === currentIdea.name)) return;
+        saved.push(currentIdea);
+        localStorage.setItem("savedDogNames", JSON.stringify(saved));
+        renderSaved();
+    }
+
+    function removeSaved(name) {
+        saved = saved.filter(s => s.name !== name);
+        localStorage.setItem("savedDogNames", JSON.stringify(saved));
+        renderSaved();
+    }
+
+    function renderSaved() {
+        const wrap = document.getElementById("savedWrap");
+        const list = document.getElementById("savedList");
+        if (saved.length === 0) { wrap.style.display = "none"; return; }
+        wrap.style.display = "block";
+        list.innerHTML = "";
+        saved.forEach(s => {
+            const li = document.createElement("li");
+            const leftSpan = document.createElement("span");
+            leftSpan.innerHTML = `<span class="saved-name">${s.name}</span><span class="saved-meta">${s.origin}</span>`;
+            const btn = document.createElement("button");
+            btn.textContent = "Remove";
+            btn.onclick = () => removeSaved(s.name);
+            li.appendChild(leftSpan);
+            li.appendChild(btn);
+            list.appendChild(li);
+        });
+    }
+
+    renderSaved();
+</script>
+
+</body>
+</html>
